@@ -1,0 +1,3 @@
+Serial number;Date;Slope [];Slope [mV/pH];Zero point [pH];Zero point [mV];pH buffer 1 [pH];Measured value 1 [mV];Temperature 1 [°C];pH buffer 2 [pH];Measured value 2 [mV];Temperature 2 [°C];pH buffer 3 [pH];Measured value 3 [mV];Temperature 3 [°C];pH buffer 4 [pH];Measured value 4 [mV];Temperature 4 [°C];pH buffer 5 [pH];Measured value 5 [mV];Temperature 5 [°C];pH buffer 6 [pH];Measured value 6 [mV];Temperature 6 [°C];pH buffer 7 [pH];Measured value 7 [mV];Temperature 7 [°C];Name;Batch ID
+10012653;01/28/22 10:15:26;91.1;-53.9;7.15;7.4;TEC_4.000;165.7;18.4;TEC_7.000;6.7;18.8;-;;;-;;;-;;;-;;;-;;;SCP-pHT-A170MF-3M-DIN-N;B210806001
+10012653;01/28/22 10:17:51;92.8;-54.9;7.10;4.4;TEC_4.000;165.8;18.8;TEC_7.000;3.6;19.1;-;;;-;;;-;;;-;;;-;;;SCP-pHT-A170MF-3M-DIN-N;B210806001
