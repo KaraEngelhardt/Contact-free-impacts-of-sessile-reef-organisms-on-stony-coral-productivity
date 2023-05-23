@@ -90,6 +90,8 @@ write.csv(Data_all, file = "data_prep_exp2.csv")
 
 rm(Data_all)
 
+
+
 #_____________________________________
 #calculation of total alcalinity
 #_____________________________________
@@ -161,12 +163,10 @@ rm(listof, listoff, read_flnm)
 
 
 ## Create tibble "Summary" with only the stuff that we need, in the right format
-
 # Function to correct nchar of datetime parts (e.g. "1" becomes "01" -> keep same nr of char)
 addzero <- function(vrbl) {
   ifelse((nchar(vrbl) == 1), paste("0", vrbl, sep = ""), vrbl)
 }
-
 
 # From datetime to filename format (to match with Filename in Flnm_all) ...
 Summary <- summary %>%
@@ -188,14 +188,13 @@ Summary <- summary %>%
          Year = str_sub(Year, start = 3, end = 4),
          Methodname = stringr::str_replace(Methodname, "0.1N", "0_1N")) %>%
   unite("Filename", c(Methodname, Day, Month, Year, Hour, Mins, Sec)) %>%
-  
   select(c(date, Filename, Sample_ID))
 
 rm(summary)
 
 # get Info summary file of all titrations
 
-SampleIDWS <- read_csv("Data/Titrator_raw_data.csv")
+SampleIDWS <- read_csv("Titrator_raw_data.csv")
 SampleIDWS$date <-  lubridate::ymd(SampleIDWS$date)
 
 # - Part 1: check for typos & missing samples ---------------------------------------------------------------------
@@ -222,8 +221,6 @@ ifelse(Nr_matchingSIDs - Nr_SIDs == 0, "All good, can continue",
 #This will tell you if you have all your samples (for which you imported the sample weight) 
 # also in the titration file. But if you forgot to transfer a sample & it's not in the
 # weights' tibble (but you have its titration), it will go unnoticed in this warning.
-
-
 
 # - Part 2: assemble ---------------------------------------------------------------------
 
@@ -253,7 +250,6 @@ named_group_split <- function(.tbl, ...) {
 Titr_Flnm_SIDWS_List <- Titr_Flnm_SIDWS %>% 
   named_group_split(Filename)
 
-
 # Titrant (HCl) normality always NHCl <- 0.1
 # Pressure was constant at 1013 hPa, needed in dbar for formula. Therefore 10.13253 dbar (keep 4 decimals for formula)
 
@@ -282,7 +278,6 @@ TA_Gran <- function(., N = 0.1, Ws, pH, Vt, Sal, Temp) {
   
 }
 
-
 # Calculate TA ---------------------------------------------------------------------- 
 
 # create a vector with the names of the list-tibble to iterate over
@@ -303,8 +298,94 @@ tab <- map_dfr(.x = list_names,
 
 
 # save 
-write.csv(tab, "Data/TA_Results.csv")
+write.csv(tab, "TA_Results.csv")
+rm(list = ls())
 
+#________________________
+# calculate calcification
+Data <- read.csv(file = "TA_Results.csv")
+Data_Time <- read.csv(file = "Exp2_oxy_raw_data.csv")
+
+Data_Time_selected <- Data_Time %>% 
+  select(day, fragment_ID, time_start_L, time_end_L)
+
+Data_Cal_Time <- left_join(Data, Data_Time_selected, by= c("day", "fragment_ID"))
+
+rm(Data_Time_selected, Data_Time, Data)
+
+
+Ref_overview <- Data_Cal_Time %>% 
+  filter(Species == "Ref") %>%  
+  group_by(day)
+
+Data_Cal_Time$TA_umolL <- Data_Cal_Time$TA_mmolL*1000
+
+Start <- Data_Cal_Time %>% filter(Species == "Start") %>%  group_by(date) %>%   mutate(meanStart = mean(TA_umolL)) %>%  select(date, meanStart) %>% unique()
+
+Data_Cal_Time <- full_join(Data_Cal_Time, Start, by = "date")
+
+# exclude Start, Ref and Test, because they have not position and not time values
+Data_Cal_Time <- Data_Cal_Time %>%  filter(Species != "Test"  & Species != "Ref" & Species != "Start") %>% 
+  mutate(date = ymd(date))
+
+volume <- read_csv(file = "Jar_volume.csv")
+volume$vjar_l <- (volume$Full - volume$Empty)/1000
+volume <- volume %>% select(position, vjar_l)
+TA_comp <- full_join(Data_Cal_Time, volume, by= "position")
+rm(volume, Start)
+
+TA_comp$pressure <- 10.186
+TA_comp$Temp <- 26 # use temperature from the incubation not the titrator here (See Schneider and Erez 2006 (used seawater density from the seawater directly not the titrator))
+
+TA_comp <- TA_comp %>% 
+  mutate(Sea_water_density = oce::swRho(salinity = Sal, temperature = Temp, pressure = pressure)/1000) %>% 
+  mutate(Sea_water_density = round(Sea_water_density, 5))
+
+# Calculate Incubation times
+TA_comp$time_start_L <- hm(TA_comp$time_start_L)
+TA_comp$time_end_L <- hm(TA_comp$time_end_L)
+TA_comp$time_L_h <- time_length (TA_comp$time_end_L - TA_comp$time_start_L, unit = "hour")
+
+
+# Formula without surface area
+Data_comp_con <- TA_comp%>% 
+  mutate(Calc_h =(((meanStart-TA_umolL)/2)* vjar_l * Sea_water_density)/time_L_h)
+
+contr <- Data_comp_con %>% filter(Species == "Con")
+
+# substract control 
+Data_Cal_Contr <- contr %>% 
+  group_by(date) %>% 
+  summarise(Calc_Contr_mean = mean(Calc_h)) 
+
+
+# Combine incubations and controls again
+Calc_comp_cont <- full_join(Data_comp_con, Data_Cal_Contr, by= "date") %>% 
+  filter(Species != "Con")
+Calc_comp_cont$Calc_umol_h_con <- Calc_comp_cont$Calc_h - Calc_comp_cont$Calc_Contr_mean
+rm(Data_Cal_Contr, Data_comp_con, contr)
+
+# get surface values
+Surface <- read_csv2(file = "Surface.csv") %>%
+  mutate(Surface_cm = Surface/100) %>% 
+  select(-c(Surface))
+
+Data_comp_all <- full_join(Calc_comp_cont, Surface, by = "fragment_ID")
+
+#noramlize with surface
+Data_comp_all$Calc_umol_cm2_h <- Data_comp_all$Calc_umol_h_con / Data_comp_all$Surface_cm
+
+rm(Calc_comp_cont)
+
+Data_comp_all <- Data_comp_all %>% 
+  filter(fragment_ID != "Pve_A2_P") %>% 
+  filter(fragment_ID != "Spi_A1_P")
+
+Data_comp_all <- Data_comp_all %>% 
+  filter(fragment_ID != "Pve_D1_M") %>% # Note that sample needed to be taken twice
+  filter(fragment_ID != "Mdi_C1_P")
+
+write.csv(Data_comp_all, file = "Calcification.csv")
 
 
 #_______________________________________________________
