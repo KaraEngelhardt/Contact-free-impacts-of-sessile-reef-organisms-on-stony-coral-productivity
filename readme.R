@@ -10,5 +10,4 @@
 #Experiment 2
 #1) Exp2_data_preparation
 #2) Exp2_statistical_analysis
-#3) Exp2_symbiont_density
-#4) Exp2_plots
+#3) Exp2_plots
