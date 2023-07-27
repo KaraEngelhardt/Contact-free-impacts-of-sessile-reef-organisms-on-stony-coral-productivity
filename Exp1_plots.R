@@ -19,7 +19,7 @@ calc_all <- mutate_if(calc_all,
 
 calc_all <- mutate_if(calc_all, 
                       is.character, 
-                      str_replace_all, pattern = "off-species", replacement = "external-conditioned")
+                      str_replace_all, pattern = "off-species", replacement = "heterospecific-conditioned")
 
 
 #__________________________
@@ -32,7 +32,7 @@ Pve <- calc_long %>% filter(species == "Pve")
 Spi <- calc_long %>% filter(species == "Spi")
 
 #Porites rus
-Pru$incubation<- factor(Pru$incubation, levels = c("self-conditioned", "external-conditioned"))
+Pru$incubation<- factor(Pru$incubation, levels = c("self-conditioned", "heterospecific-conditioned"))
 Pru$name<- factor(Pru$name, levels = c("net_photo_ug_h_cm2", "respiration_ug_h_cm2", "gross_photo_ug_h_cm2"))
 
 pru <- ggplot(Pru, aes(x = name, y = value, fill = incubation)) +
@@ -59,7 +59,7 @@ pru <- ggplot(Pru, aes(x = name, y = value, fill = incubation)) +
         legend.text = element_text(size = 12)) + guides(color="none")
 
 # Pocillopora verrucosa
-Pve$incubation<- factor(Pve$incubation, levels = c("self-conditioned", "external-conditioned"))
+Pve$incubation<- factor(Pve$incubation, levels = c("self-conditioned", "heterospecific-conditioned"))
 Pve$name<- factor(Pve$name, levels = c("net_photo_ug_h_cm2", "respiration_ug_h_cm2", "gross_photo_ug_h_cm2"))
 
 pve <- ggplot(Pve, aes(x = name, y = value, fill = incubation)) +
@@ -86,7 +86,7 @@ pve <- ggplot(Pve, aes(x = name, y = value, fill = incubation)) +
         legend.text = element_text(size = 12)) + guides(color="none")
 
 # Stylophora pistillata
-Spi$incubation<- factor(Spi$incubation, levels = c("self-conditioned", "external-conditioned"))
+Spi$incubation<- factor(Spi$incubation, levels = c("self-conditioned", "heterospecific-conditioned"))
 Spi$name<- factor(Spi$name, levels = c("net_photo_ug_h_cm2", "respiration_ug_h_cm2", "gross_photo_ug_h_cm2"))
 
 spi <- ggplot(Spi, aes(x = name, y = value, fill = incubation)) +
