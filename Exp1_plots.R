@@ -145,7 +145,8 @@ net <- ggplot(pru, aes(x = cond_organism, y = net_photo_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#3366FF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 5.95, linetype = 2, color = "darkgrey") +
   ylim(0,15)+  
   labs(y=expression(Net~photosynthesis~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Pru" = "Porites rus", "Amu" = "Acropora muricata",
@@ -155,10 +156,10 @@ net <- ggplot(pru, aes(x = cond_organism, y = net_photo_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   annotate("text", x = 2, y = 13, size = 7, label = c("**"), color = "black") +
   annotate("text", x = 3, y = 13, size = 7, label = c("**"), color = "black") +
   annotate("text", x = 4, y = 13, size = 7, label = c("*"), color = "black") +
@@ -166,6 +167,7 @@ net <- ggplot(pru, aes(x = cond_organism, y = net_photo_ug_h_cm2)) +
   annotate("text", x = 7, y = 13, size = 7, label = c("*"), color = "black") +
   theme(legend.position = "none") +
   theme(axis.title.x=element_blank()) +
+  theme(axis.text.y = element_text(size = 10)) +
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
                                    angle = 45, vjust = 1, hjust=1))
@@ -178,7 +180,8 @@ resp <- ggplot(pru, aes(x = cond_organism, y = respiration_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#3366FF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 3.65, linetype = 2, color = "darkgrey") +
   ylim(0,7)+  
   labs(y=expression(Respiration~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Pru" = "Porites rus", "Amu" = "Acropora muricata",
@@ -188,10 +191,10 @@ resp <- ggplot(pru, aes(x = cond_organism, y = respiration_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   annotate("text", x = 2, y = 6.2, size = 7, label = c("**"), color = "black")+
   annotate("text", x = 3, y = 6.2, size = 7, label = c("**"), color = "black")+
   annotate("text", x = 4, y = 6.2, size = 7, label = c("***"), color = "black")+
@@ -201,6 +204,7 @@ resp <- ggplot(pru, aes(x = cond_organism, y = respiration_ug_h_cm2)) +
   annotate("text", x = 8, y = 6.2, size = 7, label = c("**"), color = "black")+
   theme(legend.position = "none") +
   theme(axis.title.x=element_blank()) +
+  theme(axis.text.y = element_text(size = 10)) +
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
                                    angle = 45, vjust = 1, hjust=1))
@@ -213,7 +217,8 @@ gross <- ggplot(pru, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#3366FF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 9.5, linetype = 2, color = "darkgrey") +
   ylim(0,20)+  
   labs(y=expression(Gross~photosynthesis~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Pru" = "Porites rus", "Amu" = "Acropora muricata",
@@ -223,10 +228,10 @@ gross <- ggplot(pru, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   annotate("text", x = 2, y = 18, size = 7, label = c("**"), color = "black")+
   annotate("text", x = 3, y = 18, size = 7, label = c("**"), color = "black")+
   annotate("text", x = 4, y = 18, size = 7, label = c("**"), color = "black")+
@@ -235,6 +240,7 @@ gross <- ggplot(pru, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
   annotate("text", x = 8, y = 18, size = 7, label = c("*"), color = "black")+
   theme(legend.position = "none") +
   theme(axis.title.x=element_blank()) +
+  theme(axis.text.y = element_text(size = 10)) +
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
                                    angle = 45, vjust = 1, hjust=1))
@@ -242,7 +248,7 @@ gross <- ggplot(pru, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
 #####merge 3 plots of P. rus
 arranged_Pru <- ggarrange(net, resp, gross,
                           labels = c("a)", "b)", "c)"),
-                          label.x = 0,
+                          label.x = 0.035,
                           label.y = 0.95,
                           common.legend = TRUE,
                           legend = "none",
@@ -267,7 +273,8 @@ net <- ggplot(pve, aes(x = cond_organism, y = net_photo_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#00CCFF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 8.95, linetype = 2, color = "darkgrey") +
   ylim(0,25)+  
   labs(y=expression(Net~photosynthesis~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Pve" = "Pocillopora verrucosa", "Amu" = "Acropora muricata",
@@ -277,16 +284,17 @@ net <- ggplot(pve, aes(x = cond_organism, y = net_photo_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   annotate("text", x = 3, y = 24, size = 7, label = c("*"), color = "black")+
   annotate("text", x = 4, y = 24, size = 7, label = c("*"), color = "black")+
   annotate("text", x = 5, y = 24, size = 7, label = c("*"), color = "black")+
   annotate("text", x = 6, y = 24, size = 7, label = c("***"), color = "black")+
   annotate("text", x = 8, y = 24, size = 7, label = c("***"), color = "black")+
   theme(legend.position = "none") +
+  theme(axis.text.y = element_text(size = 10)) +
   theme(axis.title.x=element_blank()) +
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
@@ -300,7 +308,8 @@ resp <- ggplot(pve, aes(x = cond_organism, y = respiration_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#00CCFF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 6.7, linetype = 2, color = "darkgrey") +
   ylim(0,15)+  
   labs(y=expression(Respiration~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Pve" = "Pocillopora verrucosa", "Amu" = "Acropora muricata",
@@ -310,13 +319,14 @@ resp <- ggplot(pve, aes(x = cond_organism, y = respiration_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   annotate("text", x = 7, y = 14.5, size = 7, label = c("**"), color = "black")+
   theme(legend.position = "none") +
   theme(axis.title.x=element_blank()) +
+  theme(axis.text.y = element_text(size = 10)) +
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
                                    angle = 45, vjust = 1, hjust=1))
@@ -329,7 +339,8 @@ gross <- ggplot(pve, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#00CCFF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 14.6, linetype = 2, color = "darkgrey") +
   ylim(0,35)+  
   labs(y=expression(Gross~photosynthesis~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Pve" = "Pocillopora verrucosa", "Amu" = "Acropora muricata",
@@ -339,10 +350,10 @@ gross <- ggplot(pve, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   annotate("text", x = 3, y = 34, size = 7, label = c("**"), color = "black")+
   annotate("text", x = 4, y = 34, size = 7, label = c("*"), color = "black")+
   annotate("text", x = 5, y = 34, size = 7, label = c("*"), color = "black")+
@@ -350,6 +361,7 @@ gross <- ggplot(pve, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
   annotate("text", x = 8, y = 34, size = 7, label = c("**"), color = "black")+
   theme(legend.position = "none") +
   theme(axis.title.x=element_blank()) +
+  theme(axis.text.y = element_text(size = 10))+
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
                                    angle = 45, vjust = 1, hjust=1))
@@ -357,7 +369,7 @@ gross <- ggplot(pve, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
 #####merge 3 plots of P. verrucosa
 arranged_Pve <- ggarrange(net, resp, gross,
                           labels = c("d)", "e)", "f)"),
-                          label.x = 0,
+                          label.x = 0.035,
                           label.y = 0.95,
                           common.legend = TRUE,
                           legend = "none",
@@ -382,7 +394,8 @@ net <- ggplot(spi, aes(x = cond_organism, y = net_photo_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#66FFFF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 26.1, linetype = 2, color = "darkgrey") +
   ylim(0,50)+  
   labs(x="Conditioning organism", y=expression(Net~photosynthesis~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Spi" = "Stylophora pistillata", "Amu" = "Acropora muricata",
@@ -392,12 +405,13 @@ net <- ggplot(spi, aes(x = cond_organism, y = net_photo_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   annotate("text", x = 4, y = 47, size = 7, label = c("*"), color = "black")+
   theme(legend.position = "none") +
+  theme(axis.text.y = element_text(size = 10)) +
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
                                    angle = 45, vjust = 1, hjust=1))
@@ -411,7 +425,8 @@ resp <- ggplot(spi, aes(x = cond_organism, y = respiration_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#66FFFF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 12.3, linetype = 2, color = "darkgrey") +
   ylim(0,25)+  
   labs(x="Conditioning organism", y=expression(Respiration~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Spi" = "Stylophora pistillata", "Amu" = "Acropora muricata",
@@ -421,11 +436,12 @@ resp <- ggplot(spi, aes(x = cond_organism, y = respiration_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   theme(legend.position = "none") +
+  theme(axis.text.y = element_text(size = 10)) +
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
                                    angle = 45, vjust = 1, hjust=1))
@@ -440,7 +456,8 @@ gross <- ggplot(spi, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
   scale_colour_manual(name = NULL,
                       values = c("#66FFFF","#000066", "#0000CC","#FF33FF",
                                  "#990099","#66FF33","#33CC33", "#000000")) +
-  geom_vline(xintercept = 1.5, linetype = 2, color = "darkgrey") +
+  geom_vline(xintercept = 1.5, linetype = 1, color = "darkgrey") +
+  geom_hline(yintercept = 35, linetype = 2, color = "darkgrey") +
   ylim(0,70)+  
   labs(x="Conditioning organism", y=expression(Gross~photosynthesis~(µg~O[2]~cm^{-2}~h^{-1}))) +
   scale_x_discrete (labels = c("Spi" = "Stylophora pistillata", "Amu" = "Acropora muricata",
@@ -450,13 +467,14 @@ gross <- ggplot(spi, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
   guides(alpha=FALSE) +
   theme_classic() +
   theme(plot.margin = unit(c(0.1,0.1,0.1,1), "cm"), axis.title.y = element_text(size = 12, hjust = 0.5))+
-  annotate("text", x = 2.5, y = 0, size = 3.5, label = c("stony coral"), color = "darkgrey")+
-  annotate("text", x = 4.5, y = 0, size = 3.5, label = c("soft coral"), color = "darkgrey")+
-  annotate("text", x = 6.5, y = 0, size = 3.5, label = c("macroalgae"), color = "darkgrey")+
-  annotate("text", x = 8, y = 0, size = 3.5, label = c("sponge"), color = "darkgrey") +
+  annotate("text", x = 2.5, y = 0, size = 4, label = c("stony coral"), color = "darkgrey")+
+  annotate("text", x = 4.5, y = 0, size = 4, label = c("soft coral"), color = "darkgrey")+
+  annotate("text", x = 6.5, y = 0, size = 4, label = c("macroalgae"), color = "darkgrey")+
+  annotate("text", x = 8, y = 0, size = 4, label = c("sponge"), color = "darkgrey") +
   annotate("text", x = 4, y = 65, size = 7, label = c("*"), color = "black")+
   annotate("text", x = 5, y = 65, size = 7, label = c("*"), color = "black")+
   theme(legend.position = "none") +
+  theme(axis.text.y = element_text(size = 10)) +
   theme(axis.text.x = element_text(size = 12, face = c("bold.italic", "italic", "italic", "italic","italic",
                                                        "italic", "italic", "italic"),
                                    angle = 45, vjust = 1, hjust=1))
@@ -464,7 +482,7 @@ gross <- ggplot(spi, aes(x = cond_organism, y = gross_photo_ug_h_cm2)) +
 #####merge 3 plots of S. pistillata
 arranged_Spi <- ggarrange(net, resp, gross,
                           labels = c("g)", "h)", "i)"),
-                          label.x = 0,
+                          label.x = 0.035,
                           label.y = 0.95,
                           common.legend = TRUE,
                           legend = "none",
@@ -476,14 +494,15 @@ rm(gross, net, resp, spi)
 
 ####merge all arranged_species to one plot
 Figure3 <- ggarrange(arranged_Pru, arranged_Pve, arranged_Spi,
-                          label.x = 0,
-                          label.y = 0.95,
+                         # label.x = 0,
+                        #  label.y = 0.95,
                           common.legend = TRUE,
                           legend = "none",
                           ncol = 1, nrow = 3,
                           hjust = -0.5,
                           vjust = 0)
 
+Figure3
 ggsave("Figures/Figure3.png", width=15, height = 15, limitsize = FALSE, dpi = 700, Figure3)
 rm(arranged_Pru, arranged_Pve, arranged_Spi, Figure3)
 
