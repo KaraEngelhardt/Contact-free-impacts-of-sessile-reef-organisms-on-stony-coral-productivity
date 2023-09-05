@@ -15,7 +15,7 @@ oxy_calc <- oxy_calc %>%
 oxy_calc <- oxy_calc %>% 
   mutate_at(c("Species", "Category"),factor)  
 
-oxy_calc <- oxy_calc %>% select(-c(X1))
+oxy_calc <- oxy_calc %>% select(-c(...1))
 
 #Analysis of Net photosynthesis
 Netto_M <- oxy_calc %>% filter(Category == "M") %>% 

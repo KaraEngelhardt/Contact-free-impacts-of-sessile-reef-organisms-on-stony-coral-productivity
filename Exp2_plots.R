@@ -20,7 +20,7 @@ Poly <- oxy_calc %>% filter(Category=="P")
 
 oxy_calc <- oxy_calc %>% unite('Merged', Species:Category, remove = FALSE)
 
-
+# net photosynthesis
 d <- ggplot(oxy_calc, aes(x = Species, y = net_photo_ug_h_cm2, fill = Category)) +
   scale_fill_manual(name = NULL, labels = c ("M" = "Monoculture", "P" = "Polyculture"), values=c("#FFFFFF", "#999999")) +
   geom_boxplot(outlier.shape = NA) +
@@ -76,7 +76,7 @@ e <- ggplot(oxy_calc, aes(x = Species, y = respiration_ug_h_cm2, fill = Category
   theme(legend.position="bottom",
         legend.text = element_text(size = 12))
 
-# gross
+# gross photosynthesis
 f <- ggplot(oxy_calc, aes(x = Species, y = gross_photo_ug_h_cm2, fill = Category)) +
   scale_fill_manual(name = NULL, labels = c ("M" = "Monoculture", "P" = "Polyculture"), values=c("#FFFFFF", "#999999")) +
   geom_boxplot(outlier.shape = NA) +
