@@ -1,9 +1,9 @@
 #Plots Experiment 1
 library(tidyverse)
 library(ggplot2)
-library(reshape)
+#library(reshape)
 library(rstatix)
-library(patchwork)
+#library(patchwork)
 library(lubridate)
 library(ggpubr)
 
@@ -512,7 +512,7 @@ rm(arranged_Pru, arranged_Pve, arranged_Spi, Figure3)
 #___________________________________________________
 ######create Score to identify the top and worst influencer
 ########Rank for Net photosynthesis
-External <- calc_all %>% filter(incubation=="external-conditioned")
+External <- calc_all %>% filter(incubation=="heterospecific-conditioned")
 
 ###separate by incubated species
 Pru <- External %>% filter(species == "Pru")
@@ -551,7 +551,7 @@ rm(Pru_merged, Spi_merged, Pve_merged, Pru, Pve, Spi, Net, Pru_rank_net, Spi_ran
 
 #####################################
 ########Rank for Gross photosynthesis
-External <- calc_all %>% filter(incubation=="external-conditioned")
+External <- calc_all %>% filter(incubation=="heterospecific-conditioned")
 
 ###separate by incubated species
 Pru <- External %>% filter(species == "Pru")
@@ -590,7 +590,7 @@ rm(Pru_merged, Spi_merged, Pve_merged, Pru, Pve, Spi, Gross, Pru_rank_gross, Spi
 
 ############################
 ########Rank for Respiration
-External <- calc_all %>% filter(incubation=="external-conditioned")
+External <- calc_all %>% filter(incubation=="heterospecific-conditioned")
 
 ###separate by incubated species
 Pru <- External %>% filter(species == "Pru")
@@ -667,6 +667,8 @@ rnet <- ggplot(Net_rank, aes(x= name, y=value, shape = cond_organism))+
 
 
 ##Plot Gross photosynthesis
+Gross_rank$cond_organism<- factor(Gross_rank$cond_organism, levels = c("Amu","Mdi", "Ssp","Xsp","Csp","Hsp","Hcn"))
+
 rgross <- ggplot(Gross_rank, aes(x= name, y=value, shape = cond_organism))+
   geom_point(size = 3) +
   geom_line(aes(group = cond_organism, color= cond_organism), lwd = 1)+
@@ -702,6 +704,8 @@ rgross <- ggplot(Gross_rank, aes(x= name, y=value, shape = cond_organism))+
         legend.title = element_text(size = 12))
 
 ##Plot Respiration
+Resp_rank$cond_organism<- factor(Resp_rank$cond_organism, levels = c("Amu","Mdi", "Ssp","Xsp","Csp","Hsp","Hcn"))
+
 rresp <- ggplot(Resp_rank, aes(x= name, y=value, shape = cond_organism))+
   geom_point(size = 3) +
   geom_line(aes(group = cond_organism, color= cond_organism), lwd = 1)+
