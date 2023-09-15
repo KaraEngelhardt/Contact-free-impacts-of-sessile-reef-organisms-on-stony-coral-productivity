@@ -642,7 +642,7 @@ rnet <- ggplot(Net_rank, aes(x= name, y=value, shape = cond_organism))+
                                                                "Mdi" = expression(italic("Montipora digitata")),
                                                                "Ssp" = expression(italic("Sinularia sp.")),
                                                                "Xsp" = expression(italic("Xenia sp.")), 
-                                                               "Csp" = expression(italic("Caulerpa sp")), 
+                                                               "Csp" = expression(italic("Caulerpa sp.")), 
                                                                "Hsp" = expression(italic("Halimeda sp.")),
                                                                "Hcn" = expression(italic("Haliclona cnidata"))),
                      values=c(0, 1, 2, 3, 4, 5, 6, 8))+
@@ -650,7 +650,7 @@ rnet <- ggplot(Net_rank, aes(x= name, y=value, shape = cond_organism))+
                                                                "Mdi" = expression(italic("Montipora digitata")),
                                                                "Ssp" = expression(italic("Sinularia sp.")),
                                                                "Xsp" = expression(italic("Xenia sp.")), 
-                                                               "Csp" = expression(italic("Caulerpa sp")), 
+                                                               "Csp" = expression(italic("Caulerpa sp.")), 
                                                                "Hsp" = expression(italic("Halimeda sp.")),
                                                                "Hcn" = expression(italic("Haliclona cnidata"))),
                      values = c("Amu" = "#000066", "Mdi" = "#0000CC",
@@ -664,7 +664,6 @@ rnet <- ggplot(Net_rank, aes(x= name, y=value, shape = cond_organism))+
         legend.position = "bottom",
         legend.text = element_text(size = 12, face = "italic", vjust = 0.5, hjust = 0),
         legend.title = element_text(size = 12))
-
 
 ##Plot Gross photosynthesis
 Gross_rank$cond_organism<- factor(Gross_rank$cond_organism, levels = c("Amu","Mdi", "Ssp","Xsp","Csp","Hsp","Hcn"))
@@ -680,7 +679,7 @@ rgross <- ggplot(Gross_rank, aes(x= name, y=value, shape = cond_organism))+
                                                                "Mdi" = expression(italic("Montipora digitata")),
                                                                "Ssp" = expression(italic("Sinularia sp.")),
                                                                "Xsp" = expression(italic("Xenia sp.")), 
-                                                               "Csp" = expression(italic("Caulerpa sp")), 
+                                                               "Csp" = expression(italic("Caulerpa sp.")), 
                                                                "Hsp" = expression(italic("Halimeda sp.")),
                                                                "Hcn" = expression(italic("Haliclona cnidata"))),
                      values=c(0, 1, 2, 3, 4, 5, 6, 8))+
@@ -688,7 +687,7 @@ rgross <- ggplot(Gross_rank, aes(x= name, y=value, shape = cond_organism))+
                                                                "Mdi" = expression(italic("Montipora digitata")),
                                                                "Ssp" = expression(italic("Sinularia sp.")),
                                                                "Xsp" = expression(italic("Xenia sp.")), 
-                                                               "Csp" = expression(italic("Caulerpa sp")), 
+                                                               "Csp" = expression(italic("Caulerpa sp.")), 
                                                                "Hsp" = expression(italic("Halimeda sp.")),
                                                                "Hcn" = expression(italic("Haliclona cnidata"))),
                      values = c("Amu" = "#000066", "Mdi" = "#0000CC",
@@ -717,7 +716,7 @@ rresp <- ggplot(Resp_rank, aes(x= name, y=value, shape = cond_organism))+
                                                                "Mdi" = expression(italic("Montipora digitata")),
                                                                "Ssp" = expression(italic("Sinularia sp.")),
                                                                "Xsp" = expression(italic("Xenia sp.")), 
-                                                               "Csp" = expression(italic("Caulerpa sp")), 
+                                                               "Csp" = expression(italic("Caulerpa sp.")), 
                                                                "Hsp" = expression(italic("Halimeda sp.")),
                                                                "Hcn" = expression(italic("Haliclona cnidata"))),
                      values=c(0, 1, 2, 3, 4, 5, 6, 8))+
@@ -725,7 +724,7 @@ rresp <- ggplot(Resp_rank, aes(x= name, y=value, shape = cond_organism))+
                                                                "Mdi" = expression(italic("Montipora digitata")),
                                                                "Ssp" = expression(italic("Sinularia sp.")),
                                                                "Xsp" = expression(italic("Xenia sp.")), 
-                                                               "Csp" = expression(italic("Caulerpa sp")), 
+                                                               "Csp" = expression(italic("Caulerpa sp.")), 
                                                                "Hsp" = expression(italic("Halimeda sp.")),
                                                                "Hcn" = expression(italic("Haliclona cnidata"))),
                      values = c("Amu" = "#000066", "Mdi" = "#0000CC",

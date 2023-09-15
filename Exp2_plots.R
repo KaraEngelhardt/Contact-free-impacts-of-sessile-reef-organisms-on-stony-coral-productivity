@@ -156,7 +156,7 @@ h <- ggplot(Dinos, aes(x = Species, y = cells_cm2, fill = Category)) +
   theme_classic() +
   scale_colour_manual(name = NULL, values = c("#000066", "#000066", "#0000CC", "#0000CC", "#3366FF", "#3366FF",
                                               "#00CCFF", "#00CCFF", "#66FFFF", "#66FFFF")) +
-  labs(y = expression(symbiont~cells~cm^{2})) +
+  labs(y = expression(Symbiont~density~(cells~cm^{-2}))) +
   scale_y_continuous(labels = c(expression("0"),expression("1\u00D710"^"6"), expression("2\u00D710"^"6"), 
                              expression("3\u00D710"^"6"), expression("4\u00D710"^"6"))) +
   geom_point(aes(colour=Merged), position = position_jitterdodge(dodge.width = 0.75, jitter.width = 0.02)) +
