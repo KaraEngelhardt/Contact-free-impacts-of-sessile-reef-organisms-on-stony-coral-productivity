@@ -16,3 +16,6 @@
 #1) Exp2_data_preparation
 #2) Exp2_statistical_analysis
 #3) Exp2_plots
+
+# create a folder called "Figures" on your device, if you want to safe the graphics
+# with the code provided
