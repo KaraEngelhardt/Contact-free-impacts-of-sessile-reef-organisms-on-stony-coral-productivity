@@ -20,6 +20,10 @@ Poly <- oxy_calc %>% filter(Category=="P")
 
 oxy_calc <- oxy_calc %>% unite('Merged', Species:Category, remove = FALSE)
 
+#_____________________
+# Figure 4
+#_____________________
+
 # net photosynthesis
 d <- ggplot(oxy_calc, aes(x = Species, y = net_photo_ug_h_cm2, fill = Category)) +
   scale_fill_manual(name = NULL, labels = c ("M" = "Monoculture", "P" = "Polyculture"), values=c("#FFFFFF", "#999999")) +
@@ -176,7 +180,7 @@ h <- ggplot(Dinos, aes(x = Species, y = cells_cm2, fill = Category)) +
         legend.title = element_text(size = 12))
 
 # merge all plots
-Figure5 <- ggarrange(d, e, f, g, h,
+Figure4 <- ggarrange(d, e, f, g, h,
                                  labels = c("a)", "b)", "c)", "d)", "e)"),
                                  label.x = 0,
                                  label.y = 0.95,
@@ -188,7 +192,7 @@ Figure5 <- ggarrange(d, e, f, g, h,
 
 
 
-ggsave("Figures/Figure5.png", width=11, height = 11, 
-       limitsize = FALSE, dpi = 700, Figure5)
+ggsave("Figures/Figure4.png", width=11, height = 11, 
+       limitsize = FALSE, dpi = 700, Figure4)
 
 rm(list = ls())

@@ -23,7 +23,7 @@ calc_all <- mutate_if(calc_all,
 
 
 #__________________________
-# Figure 2
+# Figure 1
 #__________________________
 calc_long <- pivot_longer(calc_all, net_photo_ug_h_cm2:gross_photo_ug_h_cm2)
 
@@ -110,7 +110,7 @@ spi <- ggplot(Spi, aes(x = name, y = value, fill = incubation)) +
         legend.title = element_text(size = 12),
         legend.text = element_text(size = 12)) + guides(color="none")
 
-arranged_Figure2 <- ggarrange(pru, pve, spi,
+arranged_Figure1 <- ggarrange(pru, pve, spi,
                                                labels = c("a)", "b)", "c)"),
                                                label.x = 0,
                                                label.y = 0.95,
@@ -121,14 +121,14 @@ arranged_Figure2 <- ggarrange(pru, pve, spi,
                                                vjust = -0.5) +
   theme(legend.text = element_text(size = 22))
 
-ggsave("Figures/Figure2.png", width=11, height = 5, 
-       limitsize = FALSE, dpi = 700, arranged_Figure2)
+ggsave("Figures/Figure1.png", width=11, height = 5, 
+       limitsize = FALSE, dpi = 700, arranged_Figure1)
 
-rm(pru, pve, spi, Pru, Pve, Spi, arranged_Figure2, calc_long)
+rm(pru, pve, spi, Pru, Pve, Spi, arranged_Figure1, calc_long)
 
 
 #_______________________________________________
-# Figure 3
+# Figure 2
 #_______________________________________________
 #####Porites rus Net, resp, gross
 pru<-calc_all %>% 
@@ -493,7 +493,7 @@ arranged_Spi <- ggarrange(net, resp, gross,
 rm(gross, net, resp, spi)
 
 ####merge all arranged_species to one plot
-Figure3 <- ggarrange(arranged_Pru, arranged_Pve, arranged_Spi,
+Figure2 <- ggarrange(arranged_Pru, arranged_Pve, arranged_Spi,
                          # label.x = 0,
                         #  label.y = 0.95,
                           common.legend = TRUE,
@@ -502,13 +502,13 @@ Figure3 <- ggarrange(arranged_Pru, arranged_Pve, arranged_Spi,
                           hjust = -0.5,
                           vjust = 0)
 
-Figure3
-ggsave("Figures/Figure3.png", width=15, height = 15, limitsize = FALSE, dpi = 700, Figure3)
-rm(arranged_Pru, arranged_Pve, arranged_Spi, Figure3)
+Figure2
+ggsave("Figures/Figure2.png", width=15, height = 15, limitsize = FALSE, dpi = 700, Figure2)
+rm(arranged_Pru, arranged_Pve, arranged_Spi, Figure2)
 
 
 #___________________________________________________
-# Figure4
+# Figure3
 #___________________________________________________
 ######create Score to identify the top and worst influencer
 ########Rank for Net photosynthesis
@@ -743,7 +743,7 @@ rresp <- ggplot(Resp_rank, aes(x= name, y=value, shape = cond_organism))+
 
 
 #####merge 3 rank plots
-Figure4 <- ggarrange(rnet, rresp, rgross,
+Figure3 <- ggarrange(rnet, rresp, rgross,
                             labels = c("a)", "b)", "c)"),
                             label.x = 0,
                             label.y = 0.95,
@@ -753,7 +753,7 @@ Figure4 <- ggarrange(rnet, rresp, rgross,
                             hjust = -1,
                             vjust = 0) 
 
-ggsave("Figures/Figure4.png", width=11, height = 5, 
-       limitsize = FALSE, dpi = 700, Figure4)
+ggsave("Figures/Figure3.png", width=11, height = 5, 
+       limitsize = FALSE, dpi = 700, Figure3)
 
-rm(calc_all, Figure4, Gross_rank, Net_rank, Resp_rank, rgross, rnet, rresp)
+rm(calc_all, Figure3, Gross_rank, Net_rank, Resp_rank, rgross, rnet, rresp)
